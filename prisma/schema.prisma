@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Staff {
+  staffId   String       @id @default(cuid())
+  firstName String
+  lastName  String
+  gender    String
+  email     String       @unique
+  address   String
+  contact   String
+  fields    FieldStaff[] // Many-to-Many relationship with Field
+
+  @@map("staff")
+}
+
+model Field {
+  fieldId  String       @id @default(cuid())
+  name     String
+  location String
+  size     Float
+  crops    Crop[]
+  staff    FieldStaff[] // Many-to-Many relationship with Staff
+
+  @@map("fields")
+}
+
+model FieldStaff {
+  fieldId String
+  staffId String
+  Field   Field  @relation(fields: [fieldId], references: [fieldId], onUpdate: Cascade, onDelete: Cascade)
+  Staff   Staff  @relation(fields: [staffId], references: [staffId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([fieldId, staffId])
+  @@map("field_staff")
+}
+
+model Crop {
+  cropId       String @id @default(cuid())
+  commonName   String
+  specificName String
+  category     String
+  season       String
+  fieldId      String
+  Field        Field  @relation(fields: [fieldId], references: [fieldId], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("crops")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+}
