@@ -48,8 +48,6 @@ router.get("/view", async (req, res) => {
     }
 })
 
-router.get("/", (req, res) => {
-    res.send("Crop Route Working!");
-});
+
 
 export default router;
