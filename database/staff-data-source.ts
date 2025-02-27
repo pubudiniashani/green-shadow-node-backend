@@ -28,11 +28,11 @@ export async function StaffAdd(s: Staff){
                 });
             }
 
-            console.log('Crop Added :',newStaff)
+            console.log('Staff Added :',newStaff)
 
         })
     }catch(err) {
-        console.log("error adding crop", err);
+        console.log("error adding staff", err);
     }
 }
 
@@ -84,11 +84,9 @@ export async function StaffDelete(staffId: string) {
                 throw new Error(`Staff with ID ${staffId} does not exist`);
             }
 
-
             await tx.fieldStaff.deleteMany({
                 where: { staffId }
             });
-
 
             await tx.staff.delete({
                 where: { staffId }
