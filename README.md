@@ -1,11 +1,16 @@
-# Green Shadow Backend With Node
+# Green Shadow Backend With Node JS
 
-### This is the backend of the Green Shadow project. This backend is implemented by using NodeJS.
+This is the backend of the Green Shadow project. This backend is built by using mainly NodeJS.
 
 ## Tech Stack 
 
-### NodeJS 
-### Prisma 
+NodeJS 
+Express JS
+Prisma 
+Typescript
+MySQL
 
-### This repo can be cloned using this link.
-### https://github.com/pubudiniashani/green-shadow-node-backend
+### Project setup
+This repo can be cloned using this link.
+ https://github.com/pubudiniashani/green-shadow-node-backend
+And then install dependencies.
